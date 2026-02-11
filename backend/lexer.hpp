@@ -43,20 +43,20 @@ enum class TokenType
 struct Token
 {
     TokenType type;
-    std::string lexeme;
+    std::string value;
     int line;
 };
 
 class Lexer
 {
 private:
-    std::vector<std::string, std::string> Tokens;
+    std::vector<Token> Tokens;
     int lineNumber;
-    bool isAlpha();
-    bool isInt();
-    bool isSkippable();
+    bool isAlpha(char src);
+    bool isInt(char src);
+    bool isSkippable(char src);
     void lineIncrementor();
-    std::vector<Token> tokenize(const std::string &source);
+    std::vector<Token> tokenize(const std::string &src);
 };
 
 #endif
