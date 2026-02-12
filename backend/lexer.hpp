@@ -44,18 +44,17 @@ struct Token
 {
     TokenType type;
     std::string value;
-    int line;
 };
 
 class Lexer
 {
 private:
     std::vector<Token> Tokens;
-    int lineNumber;
+    int position;
     bool isAlpha(char src);
     bool isInt(char src);
     bool isSkippable(char src);
-    void lineIncrementor();
+    void advance();
     std::vector<Token> tokenize(const std::string &src);
 };
 

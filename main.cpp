@@ -26,7 +26,7 @@ int main(int argc, char **argv)
     }
 
     std::string source_code = read_file(argv[1]);
-    std::cout << source_code;
+    std::cout << source_code << std::endl;
 
     return 0;
 }
