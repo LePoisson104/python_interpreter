@@ -1,4 +1,7 @@
 #include "lexer.hpp"
+#include <vector>
+
+Lexer::Lexer(const std::string &src) : src(src), position(0) {}
 
 bool Lexer::isAlpha(char src)
 {
@@ -14,6 +17,7 @@ void Lexer::advance()
     position++;
 }
 
-std::vector<Token> Lexer::tokenize(const std::string &src)
+std::vector<Token> Lexer::tokenize()
 {
+    std::vector<Token> tokens;
 }

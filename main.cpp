@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include "backend/lexer.hpp"
 
 std::string read_file(const std::string &filename)
 {
@@ -25,8 +26,15 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    std::string source_code = read_file(argv[1]);
-    std::cout << source_code << std::endl;
+    std::string source = read_file(argv[1]);
+
+    Lexer lexer(source);
+    std::vector<Token> tokens = lexer.tokenize();
+
+    for (const Token &t : tokens)
+    {
+        std::cout << t.value << '\n';
+    }
 
     return 0;
 }

@@ -48,14 +48,18 @@ struct Token
 
 class Lexer
 {
+public:
+    explicit Lexer(const std::string &src);
+    std::vector<Token> tokenize();
+
 private:
-    std::vector<Token> Tokens;
-    int position;
     bool isAlpha(char src);
     bool isInt(char src);
     bool isSkippable(char src);
     void advance();
-    std::vector<Token> tokenize(const std::string &src);
+
+    std::string src;
+    int position;
 };
 
 #endif
