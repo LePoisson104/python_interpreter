@@ -14,6 +14,8 @@ enum class TokenType
     COMMA,
     MINUS,
     PLUS,
+    MULTIPLY,
+    DIVIDE,
     // One or two character tokens;
     EQUAL,
     EQUAL_EQUAL,
@@ -53,10 +55,14 @@ public:
     std::vector<Token> tokenize();
 
 private:
-    bool isAlpha(char src);
-    bool isInt(char src);
+    bool isAlpha(char c);
+    bool isInt(char c);
     bool isAtEnd() const;
-    char advance();
+    std::string createIdentifier();
+    std::string createInteger();
+    Token createEqualEqual();
+    char currentChar();
+    void advance();
 
     std::string src;
     int position;

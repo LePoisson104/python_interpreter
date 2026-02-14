@@ -4,6 +4,33 @@
 #include <string>
 #include "backend/lexer.hpp"
 
+std::string printTokenType(TokenType type)
+{
+    switch (type)
+    {
+    case TokenType::LEFT_PAREN:
+        return "LEFT_PAREN";
+    case TokenType::RIGHT_PAREN:
+        return "RIGHT_PAREN";
+    case TokenType::EQUAL:
+        return "EQUAL";
+    case TokenType::EQUAL_EQUAL:
+        return "EQUAL_EQUAL";
+    case TokenType::IDENTIFIER:
+        return "IDENTIFIER";
+    case TokenType::NUMBER:
+        return "NUMBER";
+    case TokenType::COMMA:
+        return "COMMA";
+    case TokenType::PLUS:
+        return "PLUS";
+    case TokenType::ENDFILE:
+        return "EOF";
+    default:
+        return "UNKNOWN";
+    }
+}
+
 std::string read_file(const std::string &filename)
 {
     std::ifstream file(filename);
@@ -34,7 +61,7 @@ int main(int argc, char **argv)
 
     for (const Token &t : tokens)
     {
-        std::cout << t.value << '\n';
+        std::cout << printTokenType(t.type) << " : " << '\'' << t.value << '\'' << '\n';
     }
 
     return 0;
