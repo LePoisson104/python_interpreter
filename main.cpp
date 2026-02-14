@@ -44,7 +44,6 @@ std::string read_file(const std::string &filename)
     return buffer.str();
 }
 
-// g++ main.cpp -o main && ./main test.py (to run the program)
 // g++ main.cpp backend/lexer.cpp -o main && ./main test.py
 int main(int argc, char **argv)
 {
