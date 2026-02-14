@@ -1,3 +1,4 @@
+#include <iostream>
 #include "lexer.hpp"
 #include <vector>
 
@@ -10,14 +11,37 @@ bool Lexer::isAlpha(char src)
 
 bool Lexer::isInt(char src) {}
 
-bool Lexer::isSkippable(char src) {}
-
-void Lexer::advance()
+bool Lexer::isAtEnd() const
 {
-    position++;
+    return position >= src.length();
+}
+
+char Lexer::advance()
+{
+    return src[position++];
 }
 
 std::vector<Token> Lexer::tokenize()
 {
     std::vector<Token> tokens;
+
+    while (!isAtEnd())
+    {
+        char c = advance();
+
+        switch (c)
+        {
+        case '(':
+            tokens.push_back({TokenType::LEFT_PAREN, "("});
+            break;
+        case ')':
+            tokens.push_back({TokenType::RIGHT_PAREN, ")"});
+            break;
+        case '=':
+            tokens.push_back({TokenType::EQUAL, "="});
+            break;
+        }
+    }
+
+    return tokens;
 }

@@ -55,8 +55,8 @@ public:
 private:
     bool isAlpha(char src);
     bool isInt(char src);
-    bool isSkippable(char src);
-    void advance();
+    bool isAtEnd() const;
+    char advance();
 
     std::string src;
     int position;
