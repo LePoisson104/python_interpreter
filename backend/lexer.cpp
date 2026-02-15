@@ -58,15 +58,15 @@ std::string Lexer::createInteger()
 
 Token Lexer::createEqualEqual()
 {
-    if (currentChar() == '=' && src[++position] == '=')
+    advance(); // consume first '='
+
+    if (!isAtEnd() && currentChar() == '=')
     {
-        advance();
+        advance(); // consume second '='
         return {TokenType::EQUAL_EQUAL, "=="};
     }
-    else
-    {
-        return {TokenType::EQUAL, "="};
-    }
+
+    return {TokenType::EQUAL, "="};
 }
 
 std::vector<Token> Lexer::tokenize()
