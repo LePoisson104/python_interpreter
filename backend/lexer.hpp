@@ -63,10 +63,9 @@ private:
     bool isAlpha(char c);
     bool isInt(char c);
     bool isAtEnd() const;
+    bool match(char expected);
     std::string createIdentifier();
     std::string createInteger();
-    Token createNotEqual();
-    Token createEqualEqual();
     char currentChar();
     void advance();
 

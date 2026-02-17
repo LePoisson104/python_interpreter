@@ -19,6 +19,18 @@ bool Lexer::isAtEnd() const
     return position >= src.length();
 }
 
+bool Lexer::match(char expected)
+{
+    advance();
+    if (!isAtEnd() && currentChar() == expected)
+    {
+        advance();
+        return true;
+    }
+
+    return false;
+}
+
 void Lexer::advance()
 {
     position++;
@@ -56,32 +68,6 @@ std::string Lexer::createInteger()
     return intStr;
 }
 
-Token Lexer::createEqualEqual()
-{
-    advance(); // consume first '='
-
-    if (!isAtEnd() && currentChar() == '=')
-    {
-        advance(); // consume second '='
-        return {TokenType::EQUAL_EQUAL, "=="};
-    }
-
-    return {TokenType::EQUAL, "="};
-}
-
-Token Lexer::createNotEqual()
-{
-    advance();
-
-    if (!isAtEnd() && currentChar() == '=')
-    {
-        advance();
-        return {TokenType::NOT_EQUAL, "!="};
-    }
-
-    return {TokenType::ERROR, "Unexpected token type !"};
-}
-
 std::vector<Token> Lexer::tokenize()
 {
     std::vector<Token> tokens;
@@ -109,10 +95,16 @@ std::vector<Token> Lexer::tokenize()
                 tokens.push_back({TokenType::RIGHT_PAREN, ")"});
                 break;
             case '=':
-                tokens.push_back(createEqualEqual());
+                tokens.push_back(match('=') ? Token{TokenType::EQUAL_EQUAL, "=="} : Token{TokenType::EQUAL, "="});
                 break;
             case '!':
-                tokens.push_back(createNotEqual());
+                tokens.push_back(match('=') ? Token{TokenType::NOT_EQUAL, "=="} : Token{TokenType::ERROR, "Unexpected token !"});
+                break;
+            case '<':
+                tokens.push_back(match('=') ? Token{TokenType::LESS_EQUAL, "<="} : Token{TokenType::ERROR, "<"});
+                break;
+            case '>':
+                tokens.push_back(match('=') ? Token{TokenType::GREATER_EQUAL, ">="} : Token{TokenType::ERROR, ">"});
                 break;
             case '+':
                 tokens.push_back({TokenType::PLUS, "+"});
