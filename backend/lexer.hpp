@@ -21,8 +21,11 @@ enum class TokenType
     EQUAL_EQUAL,
     GREATER,
     GREATER_EQUAL,
+    NOT,
+    NOT_EQUAL,
     LESS,
     LESS_EQUAL,
+
     // Literals
     IDENTIFIER,
     STRING,
@@ -38,6 +41,8 @@ enum class TokenType
     RETURN,
     TRUE,
     WHILE,
+    // Erro token
+    ERROR,
     // EOF
     ENDFILE
 };
@@ -60,6 +65,7 @@ private:
     bool isAtEnd() const;
     std::string createIdentifier();
     std::string createInteger();
+    Token createNotEqual();
     Token createEqualEqual();
     char currentChar();
     void advance();

@@ -69,6 +69,19 @@ Token Lexer::createEqualEqual()
     return {TokenType::EQUAL, "="};
 }
 
+Token Lexer::createNotEqual()
+{
+    advance();
+
+    if (!isAtEnd() && currentChar() == '=')
+    {
+        advance();
+        return {TokenType::NOT_EQUAL, "!="};
+    }
+
+    return {TokenType::ERROR, "Unexpected token type !"};
+}
+
 std::vector<Token> Lexer::tokenize()
 {
     std::vector<Token> tokens;
@@ -97,6 +110,9 @@ std::vector<Token> Lexer::tokenize()
                 break;
             case '=':
                 tokens.push_back(createEqualEqual());
+                break;
+            case '!':
+                tokens.push_back(createNotEqual());
                 break;
             case '+':
                 tokens.push_back({TokenType::PLUS, "+"});

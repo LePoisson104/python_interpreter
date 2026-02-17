@@ -16,6 +16,8 @@ std::string printTokenType(TokenType type)
         return "EQUAL";
     case TokenType::EQUAL_EQUAL:
         return "EQUAL_EQUAL";
+    case TokenType::NOT_EQUAL:
+        return "NOT_EQUAL";
     case TokenType::IDENTIFIER:
         return "IDENTIFIER";
     case TokenType::NUMBER:
@@ -26,6 +28,8 @@ std::string printTokenType(TokenType type)
         return "PLUS";
     case TokenType::ENDFILE:
         return "EOF";
+    case TokenType::ERROR:
+        return "ERROR";
     default:
         return "UNKNOWN";
     }
