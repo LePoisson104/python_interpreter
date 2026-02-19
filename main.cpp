@@ -26,6 +26,8 @@ std::string printTokenType(TokenType type)
         return "COMMA";
     case TokenType::PLUS:
         return "PLUS";
+    case TokenType::STRING:
+        return "STRING";
     case TokenType::ENDFILE:
         return "EOF";
     case TokenType::ERROR:

@@ -68,6 +68,18 @@ std::string Lexer::createInteger()
     return intStr;
 }
 
+Token Lexer::createString()
+{
+    std::string strVal;
+    advance();
+    while (currentChar() != '"')
+    {
+        strVal += currentChar();
+        advance();
+    }
+    return {TokenType::STRING, strVal};
+}
+
 std::vector<Token> Lexer::tokenize()
 {
     std::vector<Token> tokens;
@@ -120,6 +132,9 @@ std::vector<Token> Lexer::tokenize()
                 break;
             case ',':
                 tokens.push_back({TokenType::COMMA, ","});
+                break;
+            case '"':
+                tokens.push_back(createString());
                 break;
             }
         }

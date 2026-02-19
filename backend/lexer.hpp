@@ -66,6 +66,7 @@ private:
     bool match(char expected);
     std::string createIdentifier();
     std::string createInteger();
+    Token createString();
     char currentChar();
     void advance();
 
