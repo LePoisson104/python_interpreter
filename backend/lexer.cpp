@@ -54,7 +54,7 @@ std::string Lexer::createIdentifier()
     return identifier;
 }
 
-std::string Lexer::createInteger()
+std::string Lexer::createNumber()
 {
     std::string intStr;
 
@@ -72,7 +72,7 @@ Token Lexer::createString()
 {
     std::string strVal;
     advance();
-    while (currentChar() != '"')
+    while (!isAtEnd() && currentChar() != '"')
     {
         strVal += currentChar();
         advance();
@@ -94,7 +94,7 @@ std::vector<Token> Lexer::tokenize()
         }
         else if (isInt(c))
         {
-            tokens.push_back({TokenType::NUMBER, createInteger()});
+            tokens.push_back({TokenType::NUMBER, createNumber()});
         }
         else
         {

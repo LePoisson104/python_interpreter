@@ -65,7 +65,7 @@ private:
     bool isAtEnd() const;
     bool match(char expected);
     std::string createIdentifier();
-    std::string createInteger();
+    std::string createNumber();
     Token createString();
     char currentChar();
     void advance();
