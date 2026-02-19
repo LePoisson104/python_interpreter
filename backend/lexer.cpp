@@ -58,7 +58,7 @@ std::string Lexer::createNumber()
 {
     std::string intStr;
 
-    while (isInt(currentChar()))
+    while (isInt(currentChar()) || currentChar() == '.')
     {
         intStr += currentChar();
         advance();
