@@ -1,7 +1,7 @@
-# C++ Python Interpreter
+# C++ Py++ Interpreter
 
-A simple Python-like interpreter written in **C++**.  
-This project parses and executes a small subset of Python syntax to demonstrate how interpreters work under the hood.
+A simple Python-like interpreter written in **C++** but with better visibility.  
+This project parses and executes a small subset of Py++ syntax to demonstrate how interpreters work under the hood.
 
 ## Features
 
@@ -21,3 +21,12 @@ This project parses and executes a small subset of Python syntax to demonstrate 
 x = 5
 y = x + 3
 print(y)
+
+if x < y {
+    print("bigger")
+}
+
+for i in range x {
+    print(i)
+}
+
